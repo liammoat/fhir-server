@@ -18,16 +18,16 @@ jobs:
       containerRegistry: $(azureContainerRegistryServiceConnection)
       command: 'login'
 
-- task: Bash@3
-  displayName: 'Build FHIR ${{parameters.version}} Server Image'
-  inputs:
-    targetType: 'inline'
-    script: |
-       docker buildx create --name multi-platform --platform $(buildPlatform)
-       docker build --tag $(azureContainerRegistry)/${{parameters.version}}_fhir-server:${{parameters.tag}} \
-                    --file ./build/docker/Dockerfile \
-                    --platform $(buildPlatform) \
-                    --builder multi-platform \
-                    --build-arg FHIR_VERSION=${{parameters.version}} \
-                    --build-arg ASSEMBLY_VER=$(assemblySemFileVer) \
-                    --push .
+  - task: Bash@3
+    displayName: 'Build FHIR ${{parameters.version}} Server Image'
+    inputs:
+      targetType: 'inline'
+      script: |
+        docker buildx create --name multi-platform --platform $(buildPlatform)
+        docker build --tag $(azureContainerRegistry)/${{parameters.version}}_fhir-server:${{parameters.tag}} \
+                      --file ./build/docker/Dockerfile \
+                      --platform $(buildPlatform) \
+                      --builder multi-platform \
+                      --build-arg FHIR_VERSION=${{parameters.version}} \
+                      --build-arg ASSEMBLY_VER=$(assemblySemFileVer) \
+                      --push .
