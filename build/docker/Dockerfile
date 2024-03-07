@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0.200-cbl-mariner2.0 AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0.201-cbl-mariner2.0 AS build
 ARG FHIR_VERSION
 ARG ASSEMBLY_VER
 
