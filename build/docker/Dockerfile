@@ -69,7 +69,7 @@ COPY . .
 
 RUN dotnet publish /repo/src/Microsoft.Health.Fhir.${FHIR_VERSION}.Web/Microsoft.Health.Fhir.${FHIR_VERSION}.Web.csproj -c Release -o "/build" --no-restore -p:AssemblyVersion="${ASSEMBLY_VER}" -p:FileVersion="${ASSEMBLY_VER}"  -p:Version="${ASSEMBLY_VER}" -f net8.0
 
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:8.0.2-cbl-mariner2.0 AS runtime
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:8.0.3-cbl-mariner2.0 AS runtime
 
 ARG FHIR_VERSION
 
